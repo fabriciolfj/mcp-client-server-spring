@@ -1,0 +1,27 @@
+server:
+  port: 8082
+
+spring:
+  application:
+    name: populacao-mcp-server
+  ai:
+    mcp:
+      server:
+        name: populacao-mcp-server
+        version: 1.0.0
+        type: SYNC
+        protocol: STREAMABLE
+        instructions: "Servidor com tools para consultar e incrementar a população de cidades (em memória)"
+        annotation-scanner:
+          enabled: true
+        streamable-http:
+          mcp-endpoint: /mcp          # http://localhost:8082/mcp
+        capabilities:
+          tool: true
+          resource: false
+          prompt: false
+          completion: false
+
+logging:
+  level:
+    org.springframework.ai.mcp: DEBUG

@@ -1,0 +1,40 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: cidades-mcp-server
+  datasource:
+    url: jdbc:h2:mem:cidades;DB_CLOSE_DELAY=-1
+    username: sa
+    password:
+  jpa:
+    hibernate:
+      ddl-auto: create
+    defer-datasource-initialization: true
+    open-in-view: false
+  sql:
+    init:
+      mode: always
+
+  ai:
+    mcp:
+      server:
+        name: cidades-mcp-server
+        version: 1.0.0
+        type: SYNC
+        protocol: STREAMABLE          # default no 2.x; STATELESS p/ escalar horizontalmente
+        instructions: "Servidor com tools de consulta de cidades brasileiras"
+        annotation-scanner:
+          enabled: true               # registra os @McpTool automaticamente
+        streamable-http:
+          mcp-endpoint: /mcp          # http://localhost:8081/mcp
+        capabilities:
+          tool: true
+          resource: false
+          prompt: false
+          completion: false
+
+logging:
+  level:
+    org.springframework.ai.mcp: DEBUG
