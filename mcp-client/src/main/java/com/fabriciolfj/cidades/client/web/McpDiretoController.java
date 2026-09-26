@@ -8,10 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
-/**
- * Fluxo SEM LLM: chama os MCP servers (cidades e populacao) diretamente.
- * Útil para testar a integração sem precisar de API key.
- */
+
 @RestController
 @RequestMapping("/mcp")
 public class McpDiretoController {
@@ -67,15 +64,14 @@ public class McpDiretoController {
 
     private List<Map<String, Object>> toolsDe(McpSyncClient client) {
         return client.listTools().tools().stream()
-                .map(t -> Map.<String, Object>of(
+                .map(t -> Map.of(
                         "name", t.name(),
                         "description", Objects.requireNonNullElse(t.description(), ""),
-                        "inputSchema", t.inputSchema()))   // Map<String,Object> no MCP SDK 2.0
+                        "inputSchema", t.inputSchema()))
                 .toList();
     }
 
     private String chamar(McpSyncClient client, String tool, Map<String, Object> args) {
-        // MCP SDK 2.0: builder(name) substitui o builder() sem argumentos
         var request = McpSchema.CallToolRequest.builder(tool)
                 .arguments(args)
                 .build();
