@@ -17,7 +17,6 @@ public class McpDiretoController {
     private final McpSyncClient populacao;
 
     public McpDiretoController(List<McpSyncClient> clients) {
-        // duas conexões configuradas: seleciona cada client pelo nome informado pelo servidor
         this.cidades = porServidor(clients, "cidades-mcp-server");
         this.populacao = porServidor(clients, "populacao-mcp-server");
     }
