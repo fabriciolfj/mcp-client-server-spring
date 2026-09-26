@@ -22,7 +22,6 @@ public class McpDiretoController {
         this.populacao = porServidor(clients, "populacao-mcp-server");
     }
 
-    /** Tools de cada servidor MCP, agrupadas pelo nome do servidor. */
     @GetMapping("/tools")
     public Map<String, List<Map<String, Object>>> tools() {
         return Map.of(
