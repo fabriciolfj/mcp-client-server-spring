@@ -86,7 +86,6 @@ public class McpDiretoController {
     private String textoDe(McpSchema.CallToolResult result) {
         StringBuilder sb = new StringBuilder();
         for (McpSchema.Content c : result.content()) {
-            // Content não é mais sealed no SDK 2.0 -> switch precisa de default
             switch (c) {
                 case McpSchema.TextContent tc -> sb.append(tc.text());
                 default -> sb.append("[conteúdo não textual: ").append(c.type()).append(']');
